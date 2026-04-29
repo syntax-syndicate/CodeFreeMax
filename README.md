@@ -1,164 +1,160 @@
 # CodeFreeMax
 
-> 🎉 **v3.0.0 正式版 已发布！**
+> 🎉 **v3.0.0 Official Release Now Available!**
 >
-> 全新 PaaS 架构正式上线，请拉取最新仓库重新部署。默认端口已更改为 **8877**，不会与之前的程序冲突，可放心部署。
+> Our brand-new PaaS architecture has officially launched. Please pull the latest repository to redeploy. The default port has been changed to **8877**; this will not conflict with previous versions of the application, so you can deploy with confidence.
 
-🚀 将 Kiro、Antigravity、Warp、Orchids、Grok 等 IDE/服务转换为兼容 OpenAI / Claude / Augment Code 格式的 API 服务。
+🚀 Transforms IDEs and services—such as Kiro, Antigravity, Warp, Orchids, and Grok—into API services compatible with OpenAI, Claude, and Augment Code formats. ## ✨ Features
 
-## ✨ 功能特性
+### Multi-Channel Support
 
-### 多渠道支持
-
-| 渠道 | Claude 协议 | OpenAI 协议 | 免费 | AugmentCode | 备注 |
+| Channel | Claude Protocol | OpenAI Protocol | Free Tier | AugmentCode | Notes |
 |------|:-----------:|:-----------:|:----:|:-----------:|------|
-| Kiro | ✅ | ✅ | ❌ | ✅ | ⭐ AugmentCode 推荐渠道 |
-| Antigravity | ✅ | ✅ | ❌ | ✅ | ⭐ AugmentCode 推荐渠道 |
+| Kiro | ✅ | ✅ | ❌ | ✅ | ⭐ AugmentCode Recommended Channel |
+| Antigravity | ✅ | ✅ | ❌ | ✅ | ⭐ AugmentCode Recommended Channel |
 | Warp | ✅ | ✅ | ❌ | ❌ | |
-| Orchids | ✅ | ✅ | ❌ | ❌ | ⚠️ 暂停出售 |
-| ClaudeCode | ✅ | — | ❌ | ❌ | 仅支持 Claude 协议 |
-| Grok | — | ✅ | ✅ | ❌ | 纯 OpenAI 协议 |
+| Orchids | ✅ | ✅ | ❌ | ❌ | ⚠️ Sales Suspended |
+| ClaudeCode | ✅ | — | ❌ | ❌ | Supports Claude Protocol Only |
+| Grok | — | ✅ | ✅ | ❌ | Pure OpenAI Protocol |
 
-- API 端点格式：`http://localhost:8877/{渠道}/v1`，如 `/kiro/v1`、`/antigravity/v1`
+- API Endpoint Format: `http://localhost:8877/{channel}/v1` (e.g., `/kiro/v1`, `/antigravity/v1`)
 
-### 💰 价格表
+### 💰 Pricing
 
-| 渠道 | 价格 | 每日调用次数 |
+| Channel | Price | Daily Call Limit |
 |------|:----:|:----------:|
-| Kiro | 200 元/月 | 86400 次/天 |
-| Antigravity | 300 元/月 | 86400 次/天 |
-| Warp | 200 元/月 | 10000 次/天 |
-| ClaudeCode | 300 元/月 | 86400 次/天 |
+| Kiro | ¥200/month | 86,400 calls/day |
+| Antigravity | ¥300/month | 86,400 calls/day |
+| Warp | ¥200/month | 10,000 calls/day |
+| ClaudeCode | ¥300/month | 86,400 calls/day |
 
-### ⚡ QPS 叠加包
+### ⚡ QPS Add-on Packs
 
-所有渠道均可叠加 QPS，提升每日调用上限：
+QPS add-ons can be applied to any channel to increase the daily call limit:
 
-| 项目 | 价格 | 说明 |
+| Item | Price | Description |
 |------|:----:|------|
-| +1 QPS | 200 元/月 | 每日增加 86400 次调用 |
+| +1 QPS | ¥200/month | Increases daily call limit by 86,400 |
 
-> 💡 **示例**：Kiro 渠道基础 86400 次/天，叠加 1 QPS 后为 172800 次/天，叠加 2 QPS 后为 259200 次/天，以此类推。
+> 💡 **Example**: The Kiro channel has a base limit of 86,400 calls/day. With +1 QPS, the limit becomes 172,800 calls/day; with +2 QPS, it becomes 259,200 calls/day; and so on. ### Core Capabilities
 
-### 核心能力
+- 🔄 **Multi-Protocol Support** — Simultaneously supports Claude `/v1/messages` and OpenAI `/v1/chat/completions`.
+- 🧠 **Automatic Context Compression** — ClaudeCode automatically compresses multi-turn conversations, ensuring ultra-long sessions remain uninterrupted and free of lag.
+- 🚀 **Augment Code Compatibility** — Seamlessly acts as a reverse proxy for Augment Code, designed for use with custom-modified plugins.
+- 🌐 **Proxy Pool** — Supports HTTP/HTTPS/SOCKS5 protocols, allowing for independent proxy configuration per channel.
+- 🔑 **Session Derivation** — Proxy addresses support the `%s` placeholder, which is automatically replaced with the account's Session ID to ensure IP isolation.
+- ⚖️ **Load Balancing** — Randomly distributes requests across multiple accounts while automatically skipping accounts experiencing errors.
+- 🧹 **Feature Sanitization** — The Antigravity channel features built-in feature sanitization, anti-ban measures, and telemetry handling to mitigate risk control issues.
+- 🔁 **Automatic Retries** — Configurable retry attempts, delay intervals, and specific retry logic for CAPTCHA challenges.
+- 📋 **Model Management** — Customize model lists, map model names, and manage model status (enable/disable) and sorting order.
+- 💾 **Data Persistence** — Utilizes MySQL storage for easy data backup and migration.
+- 🎨 **Management Interface** — Features a brand-new frontend interface for intuitive and user-friendly operation.
 
-- 🔄 **多协议** — 同时支持 Claude `/v1/messages` 和 OpenAI `/v1/chat/completions`
-- 🧠 **上下文自动压缩** — ClaudeCode 多轮对话自动压缩，超长会话不丢失、不卡顿
-- 🚀 **Augment Code 适配** — 完美反代 Augment Code，配合魔改插件使用
-- 🌐 **代理池** — 支持 HTTP/HTTPS/SOCKS5，可按渠道独立配置代理
-- 🔑 **Session 派生** — 代理地址支持 `%s` 占位符，自动替换为账号 Session ID，实现 IP 隔离
-- ⚖️ **负载均衡** — 多账号随机分配，自动跳过异常账号
-- 🧹 **特征清洗** — Antigravity 渠道已做特征清洗、防封及遥测处理，降低风控风险
-- 🔁 **自动重试** — 可配置重试次数、延迟和验证码重试
-- 📋 **模型管理** — 自定义模型列表、名称映射、启用/禁用、排序
-- 💾 **数据持久化** — MySQL 存储，方便备份迁移
-- 🎨 **管理界面** — 全新前端界面，操作直观
+## Quick Start
 
-## 快速开始
-
-### 1. 下载部署文件
+### 1. Download Deployment Files
 
 ```bash
 git clone https://github.com/ssmDo/CodeFreeMax.git
 cd CodeFreeMax/
 ```
 
-### 2. 一键部署
+### 2. One-Click Deployment
 
 ```bash
 chmod +x deploy.sh
 ./deploy.sh
 ```
 
-运行 `./deploy.sh` 会自动执行：停止旧服务 → 拉取最新镜像 → 启动服务
+Running `./deploy.sh` will automatically execute the following steps: Stop the old service → Pull the latest Docker image → Start the service.
 
-### 3. 常用命令
+### 3. Common Commands
 
 ```bash
-# 查看日志
+# View logs
 docker compose logs -f
 
-# 停止服务
+# Stop service
 docker compose down
 
-# 查看状态
+# Check status
 docker compose ps
 ```
 
-## 配置说明
+## Configuration Guide
 
-### .env 文件
+### .env File
 
 ```bash
-# Docker 镜像配置
+# Docker Image Configuration
 DOCKER_IMAGE=ssmdo/kiro2api:latest
 
-# 服务端口
+# Service Port
 PORT=8877
 ```
 
-### config.yaml 文件
+### config.yaml File
 
 ```yaml
 server:
-  address: ":8877"  # 服务监听地址
+address: ":8877"  # Service listening address
 
 database:
-  default:
-    type: "mysql"
-    link: "mysql:root:password@tcp(127.0.0.1:3306)/augment"  # 数据库连接
+default:
+type: "mysql"
+link: "mysql:root:password@tcp(127.0.0.1:3306)/augment"  # Database connection string
 ```
 
-## 目录结构
+## Directory Structure
 
 ```
 deploy/
-├── README.md           # 部署说明
-├── deploy.sh           # 一键部署脚本
-├── docker-compose.yml  # Docker Compose 配置
-├── config.yaml         # 应用配置文件
-├── .env.example        # 环境变量示例
-└── data/               # 数据目录（自动创建）
+├── README.md           # Deployment instructions
+├── deploy.sh           # One-click deployment script
+├── docker-compose.yml  # Docker Compose configuration
+├── config.yaml         # Application configuration file
+├── .env.example        # Environment variables example
+└── data/               # Data directory (automatically created)
 ```
 
-## 常见问题
+## FAQ
 
-### 1. 端口被占用
+### 1. Port Already in Use
 
-修改 `.env` 文件中的 `PORT` 变量：
+Modify the `PORT` variable in the `.env` file:
 
 ```bash
 PORT=8080
 ```
 
-### 2. 更新到最新版本
+### 2. Updating to the Latest Version
 
-直接重新运行部署脚本即可：
+Simply re-run the deployment script:
 
 ```bash
 ./deploy.sh
 ```
 
-### 3. 查看运行日志
+### 3. Viewing Runtime Logs
 
 ```bash
 docker compose logs -f
 ```
 
-### 4. 数据持久化
+### 4. Data Persistence
 
-数据存储在 MySQL 数据库中，请定期备份数据库。
+Data is stored in the MySQL database; please back up your database regularly.
 
-## 🔌 Augment Code 配套使用
+## 🔌 Companion Use with Augment Code
 
-本项目可配合魔改版 Augment-BYOK 插件使用，实现在 Augment Code 中使用自定义 API 端点。
+This project can be used in conjunction with a modified version of the Augment-BYOK plugin to enable the use of custom API endpoints within Augment Code.
 
-👉 **使用教程**: [飞书文档](https://tcn1dv9putrz.feishu.cn/wiki/NfNEwWkGuiWhNJkHFdRcfXrPnn1)
-🔑 **访问密码**: `734&Q851`
+👉 **Tutorial**: [Feishu Document](https://tcn1dv9putrz.feishu.cn/wiki/NfNEwWkGuiWhNJkHFdRcfXrPnn1)
+🔑 **Access Password**: `734&Q851`
 
-## 🙏 鸣谢
+## 🙏 Acknowledgments
 
-- [Augment-BYOK](https://github.com/AnkRoot/Augment-BYOK) - 本插件基于此项目进行魔改，感谢原作者的开源贡献
+- [Augment-BYOK](https://github.com/AnkRoot/Augment-BYOK) - This plugin is a modified version based on this project; thanks to the original author for their open-source contributions.
 
 ## License
 
